@@ -5,20 +5,12 @@ import Posts from './components/Posts'
 import Post from './components/Post'
 import Login from './components/Login'
 import Register from './components/Register'
-
-let url = 'https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts'
+import CreatePost from './components/CreatePost';
 
 const App = ()=> {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
   
-  useEffect(()=> {
-    fetch(url)
-    .then( response => response.json())
-    .then( json => setPosts(json.data.posts))
-    exchangeTokenForUser();
-  }, [])
-
   const exchangeTokenForUser = ()=> {
     const token = window.localStorage.getItem('token');
     if(token){
@@ -36,6 +28,13 @@ const App = ()=> {
     }
   };
 
+
+  useEffect(()=> {
+    fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts')
+    .then( response => response.json())
+    .then( json => setPosts(json.data.posts))
+    exchangeTokenForUser();
+  }, [])
 
   const logout = ()=> {
     window.localStorage.removeItem('token');
@@ -60,6 +59,7 @@ const App = ()=> {
       <nav>
         <Link to='/'> Home </Link>
         <Link to='/posts'>Posts ({posts.length})</Link>
+        <Link to='/createpost'> Create Post</Link>
       </nav>
       <Routes>
         
@@ -67,6 +67,7 @@ const App = ()=> {
         <Route path='/posts/:id' element = {
           <Post posts={ posts }/>
         } />
+        <Route path='/createpost' element= {<CreatePost/>}/>
       </Routes> 
     </div>
 
