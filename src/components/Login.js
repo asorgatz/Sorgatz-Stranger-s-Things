@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { exchangeTokenForUser } from '../api/';
 
 const Login = (props) => {
     const exchangeTokenForUser = props.exchangeTokenForUser
@@ -7,7 +8,8 @@ const Login = (props) => {
 
     const login = (ev) => {
         ev.preventDefault()
-        fetch(
+          try {
+            fetch(
             'https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/login',
             {
               method: 'POST',
@@ -28,9 +30,14 @@ const Login = (props) => {
               window.localStorage.setItem('token', token);
               exchangeTokenForUser();
             })
+          } catch (error) {
+            console.error(error)
+          }
         };
+
+
         return (
-            <form onSubmit={login}>
+            <form onSubmit={ login }>
               <input
                 placeholder="username"
                 value={username}

@@ -36,9 +36,23 @@ const CreatePost = () =>{
         />
         <label>Will Deliver?</label>
       </form>
-      <button onClick={ev=>pushPost(postTitle, postPrice, postDescription, postDeliver)}>Create Post</button>
+      <button onClick={ev=>{pushPost(postTitle, postPrice, postDescription, postDeliver);window.location.href = '/dist/#/home'}}>Create Post</button>
     </div>
   )
 }
+
+// onSubmit={async(ev) => { 
+//     try {
+//         ev.preventDefault();
+//         const token = await fetchLogin(username, password);
+//         setToken(token);
+//         const redirectposts = () => {
+//             window.location.href = '/dist/index.html#/pos';
+//         }
+//         redirectposts();
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }}
 
 export default CreatePost

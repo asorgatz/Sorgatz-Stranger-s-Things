@@ -13,9 +13,12 @@ const Posts = (props) => {
             {
               posts.map( post => {
                 return (
-                  <li key={ post._id }>
-                    <Link to={`/posts/${post._id}`}>{ post.title }</Link>
-                  </li>
+                    <div key={ post._id }>
+                        <h3><Link to={`/posts/${post._id}`}>{ post.title }</Link></h3>
+                        <p> {post.description}</p>
+                        <p>Price: {post.price}</p>
+                        <p>Location: {post.location}</p>
+                  </div>
                 );
               })
             }
