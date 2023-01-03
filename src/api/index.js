@@ -24,7 +24,6 @@ export const exchangeTokenForUser = ()=> {
 export const pushPost = async (title, description, price, willDeliver) => {
     // const navigate = useNavigate()
     try {
-
         const token = window.localStorage.getItem('token')
         const response = await fetch(`https://strangers-things.herokuapp.com/api/${COHORT}/posts`, {
             method: "POST",
@@ -62,6 +61,7 @@ export const deletePost = (id)=>{
 }).then(response => response.json())
   .then(result => {
     console.log(result);
+
   })
     } catch (error) {
         console.error(error)

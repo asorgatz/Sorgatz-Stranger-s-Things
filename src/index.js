@@ -70,19 +70,14 @@ const App = ()=> {
 
       <nav>
         <Link to='/home'> Home </Link>
-        
         {
         user._id ? <Link to='/createpost'> Create Post</Link> : null
       }
       </nav>
 
       <Routes>
-        
         <Route path='/home' element= { <Posts posts={posts}/> }/> 
-        <Route path='/posts/:id' element = {
-          <Post posts={ posts }/>
-        } 
-        />
+        <Route path='/posts/:id' element = {<Post posts={ posts }/>} />
         <Route path='/createpost' element= {<CreatePost/>}/>
       </Routes> 
     </div>
