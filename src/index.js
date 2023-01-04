@@ -16,6 +16,7 @@ const App = ()=> {
     const token = window.localStorage.getItem('token')
     const getUser = async ()=>{
       const newUser = await exchangeTokenForUser(token);
+      console.log(newUser)
       setUser(newUser)
       console.log(user)
     };
@@ -59,7 +60,7 @@ const App = ()=> {
           !user._id ? (
         <div>
           <Register/>
-          <Login exchangeTokenForUser={ exchangeTokenForUser } user={user} setUser={ setUser } setToken={setToken}/>
+          <Login user={user} setUser={ setUser } setToken={setToken}/>
         </div>) : null
         } 
 
@@ -73,7 +74,7 @@ const App = ()=> {
         <Route path='/home' element= { <Posts posts={posts}/> }/> 
         <Route path='/posts/:id' element = {<Post posts={ posts } user={ user }/>} />
         <Route path='/createpost' element= {<CreatePost posts={posts} setPosts={setPosts}/>}/>
-        <Route path='/messages' element= {<Messages token={token}/>}/>
+        <Route path='/messages' element= {<Messages user={user}/>}/>
       </Routes> 
     </div>
 

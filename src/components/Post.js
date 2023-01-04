@@ -23,7 +23,10 @@ const Post = (props)=> {
           { post.description }
         </p>
          { post.willDeliver ? <p> Will Deliver</p> : <p>Will Not Deliver</p>}
-         { post.isAuthor ? <div> <button> Edit </button> <button onClick={ ev => {deletePost(post._id); window.location.href = '/dist/#/home'}}> Delete </button> </div>: null}
+         { post.isAuthor ? <div> 
+          {/* when edit added */}
+          {/* <button> Edit </button>  */}
+          <button onClick={ ev => {deletePost(post._id); window.location.href = '/dist/#/home'}}> Delete </button> </div>: null}
          { !post.isAuthor && user._id ? <MessageForm post={post}/>: null}
       </div>
     );

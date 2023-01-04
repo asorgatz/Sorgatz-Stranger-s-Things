@@ -1,13 +1,7 @@
 import React, {useState} from 'react'
-import { exchangeTokenForUser } from '../api'
 
 const Messages = (props) => {
-    token = props.token
-    const getUser = async ()=>{
-        const newUser = await exchangeTokenForUser(token);
-        return newUser
-      };
-    const user = getUser()
+    const user = props.user
     const messages = user.messages
     console.log(user)
 
