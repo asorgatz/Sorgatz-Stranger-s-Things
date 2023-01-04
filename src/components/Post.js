@@ -17,7 +17,7 @@ const Post = (props)=> {
     }
     return (
       <div>
-        <h1><Link to='/home'>{ post.title }</Link></h1> 
+        <h1><Link to='/'>{ post.title }</Link></h1> 
         <p>{post.price}</p>
         <p>
           { post.description }

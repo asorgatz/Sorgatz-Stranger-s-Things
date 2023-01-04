@@ -31,7 +31,7 @@ export const exchangeTokenForUser = async (token) => {
         });
         const result = await response.json();
         const user = result.data
-        console.log(user)
+        console.log(['ext result', user])
         return user
     } catch (error) {
         console.error(error)
