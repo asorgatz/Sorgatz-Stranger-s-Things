@@ -1,12 +1,28 @@
 import React, {useState} from 'react'
 import { pushPost } from '../api/';
 
-const CreatePost = () =>{
+const CreatePost = (props) =>{
 
     const [postTitle, setPostTitle] = useState('');
     const [postPrice, setPostPrice] = useState('');
     const [postDescription, setPostDescription] = useState('');
     const [postDeliver, setPostDeliver] = useState(false)
+
+    const posts = props.posts
+    const setPosts = props.setPosts
+
+    const submitPost = async ()=>{
+        console.log("creating post")
+        try {
+            const postData = await pushPost(postTitle, postPrice, postDescription, postDeliver);
+            setPosts([...posts, postData])
+            window.location.href = '/dist/#/home'
+        } catch (error) {
+            console.error(error)
+        }
+        
+
+    }
 
   return (
     <div>
@@ -36,23 +52,9 @@ const CreatePost = () =>{
         />
         <label>Will Deliver?</label>
       </form>
-      <button onClick={ev=>{pushPost(postTitle, postPrice, postDescription, postDeliver);window.location.href = '/dist/#/home'}}>Create Post</button>
+      <button onClick={ submitPost } disabled={!postTitle || !postPrice || !postDescription}>Create Post</button>
     </div>
   )
 }
-
-// onSubmit={async(ev) => { 
-//     try {
-//         ev.preventDefault();
-//         const token = await fetchLogin(username, password);
-//         setToken(token);
-//         const redirectposts = () => {
-//             window.location.href = '/dist/index.html#/pos';
-//         }
-//         redirectposts();
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }}
 
 export default CreatePost
